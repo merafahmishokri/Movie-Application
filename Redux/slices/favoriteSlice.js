@@ -1,32 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {createSlice } from "@reduxjs/toolkit";
 
-export const GetAllFavorites=createAsyncThunk("favorites/getAll",async()=>{
-    const data=await axios.get("http://localhost:9000/favorites")
-    console.log(data.data)
-    return data.data
-})
-export const EditFavorite=createAsyncThunk("favorites/edit",async({id,movie})=>{
-   console.log(movie);
-    await axios.put("http://localhost:9000/favorites/"+id,movie);
-})
-export const DeleteFavorite=createAsyncThunk("favorites/delete",async(id)=>{
-     await axios.delete("http://localhost:9000/favorites/"+id);
-     
- })
- export const Addfavorites=createAsyncThunk("favorites/add",async(movie)=>{
-    await axios.post("http://localhost:9000/favorites",movie);
-    
-})
 const favoritesSlice=createSlice({
     name:"favorites",
     initialState:{favorites:[]},
-    extraReducers:(builder)=>{
-        builder.addCase(GetAllFavorites.fulfilled,(state,action)=>{
-            state.favorites=action.payload
-        })
-       
+    reducers:{
+        addToFavorite: (state, action)=>{
+            state.favorites.push(action.payload);
+        },
+        removeFromFavorite: (state, action)=>{
+            // const idx = state.favorites.findIndex(f => f.id === action.payload)
+            // state.favorites.splice(idx, 1);
+            state.favorites.filter(m=>m.id==action.payload)
+        }
+        
+        
     }
 })
 
 export default  favoritesSlice.reducer;
+export const { addToFavorite, removeFromFavorite } = favoritesSlice.actions;
