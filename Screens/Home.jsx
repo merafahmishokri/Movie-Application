@@ -5,13 +5,17 @@ import Search from '../Components/Home/Search';
 
 const Home = () => {
     return (
-        <View>
+        <View style={styles.con}>
             <Search></Search>
             <Movies></Movies>
         </View>
     );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    con:{
+        backgroundColor:"#45474B"
+    }
+})
 
 export default Home;

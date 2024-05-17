@@ -8,9 +8,8 @@ const favoritesSlice=createSlice({
             state.favorites.push(action.payload);
         },
         removeFromFavorite: (state, action)=>{
-            // const idx = state.favorites.findIndex(f => f.id === action.payload)
-            // state.favorites.splice(idx, 1);
-            state.favorites.filter(m=>m.id==action.payload)
+            const idx = state.favorites.findIndex(f => f.id === action.payload)
+            state.favorites.splice(idx, 1);
         }
         
         

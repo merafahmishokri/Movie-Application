@@ -1,31 +1,54 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const GetAllMovies=createAsyncThunk("movies/getAll",async()=>{
-    const data=await axios.get("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9813ce01a72ca1bd2ae25f091898b1c7")
+export const GetNowPlayingMovies=createAsyncThunk("movies/getAllNowPlaying",async()=>{
+    const data=await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=00f378e7895b0d9b5b8653e265d683e1")
     return data.data.results
-})
-export const EditMovie=createAsyncThunk("movies/edit",async({id,movie})=>{
-    await axios.put("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9813ce01a72ca1bd2ae25f091898b1c7/"+id,movie);
     
 })
-export const DeletMovie=createAsyncThunk("movies/delete",async(id)=>{
-     await axios.delete("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9813ce01a72ca1bd2ae25f091898b1c7/"+id);
-     
- })
- export const AddMovie=createAsyncThunk("movies/add",async(movie)=>{
-    await axios.post("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9813ce01a72ca1bd2ae25f091898b1c7",movie);
+export const GetPopulargMovies=createAsyncThunk("movies/getAllPopular",async()=>{
+    const data=await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=00f378e7895b0d9b5b8653e265d683e1")
+    return data.data.results
+    
+})
+export const GetTopRatedMovies=createAsyncThunk("movies/getAllTopRated",async()=>{
+    const data=await axios.get("https://api.themoviedb.org/3/movie/top_rated?api_key=00f378e7895b0d9b5b8653e265d683e1")
+    return data.data.results
+    
+})
+export const GetUpcomingMovies=createAsyncThunk("movies/getAllUpcoming",async()=>{
+    const data=await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=00f378e7895b0d9b5b8653e265d683e1")
+
+    return data.data.results
     
 })
 const moviesSlice=createSlice({
     name:"movies",
-    initialState:{movies:[]},
+    initialState:{moviesFlag:[],NowPlaying:[],Popular:[],TopRated:[],Upcoming:[],movies:[]},
+    reducers:{
+        setMovies: (state, action)=>{
+            state.moviesFlag=action.payload;
+        },
+        searchMovies: (state, action)=>{
+            state.movies=action.payload;
+        },
+    },
     extraReducers:(builder)=>{
-        builder.addCase(GetAllMovies.fulfilled,(state,action)=>{
-            state.movies=action.payload
+        builder.addCase(GetNowPlayingMovies.fulfilled,(state,action)=>{
+            state.NowPlaying=action.payload
+        }),
+        builder.addCase(GetTopRatedMovies.fulfilled,(state,action)=>{
+            state.Popular=action.payload
+        }),
+        builder.addCase(GetPopulargMovies.fulfilled,(state,action)=>{
+            state.TopRated=action.payload
+        }),
+        builder.addCase(GetUpcomingMovies.fulfilled,(state,action)=>{
+            state.Upcoming=action.payload
         })
        
     }
 })
 
 export default  moviesSlice.reducer;
+export const { setMovies,searchMovies } = moviesSlice.actions;

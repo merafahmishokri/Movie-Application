@@ -6,13 +6,14 @@ import Home from './Screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNav from './Navigation/DrawerNav';
 import 'react-native-gesture-handler';
+import BottomNav from './Navigation/BottomNav';
 
 export default function App() {
   return (
     
     <Provider store={store}>
       <NavigationContainer>
-        <DrawerNav></DrawerNav>
+        <BottomNav></BottomNav>
       </NavigationContainer>
     </Provider>
   );
