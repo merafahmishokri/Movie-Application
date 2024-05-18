@@ -15,7 +15,7 @@ const Search = () => {
     const Popularmovies=useSelector(state=>state.movies.Popular)
     const TopRatedmovies=useSelector(state=>state.movies.TopRated)
     const Upcomingmovies=useSelector(state=>state.movies.Upcoming)
-    
+
     const local_data = [
       {
         value: '1',
@@ -32,21 +32,21 @@ const Search = () => {
       },
       {
         value: '3',
-        lable: 'Top Movies',
+        lable: 'Top Rated',
         fun:()=>{
           dispatch(setMovies([false,false,false,true,false]))
         }
       },
       {
         value: '4',
-        lable: 'Upcoming Movies',
+        lable: 'Upcoming',
         fun:()=>{
           dispatch(setMovies([false,false,false,false,true]))
         }
       },
       {
         value: '5',
-        lable: 'Now Playing Movies',
+        lable: 'Now Playing',
         fun:()=>{
           dispatch(setMovies([false,true,false,false,false]))
         }
@@ -78,7 +78,7 @@ const Search = () => {
     }
   return (
     <>
-    <Image source={{uri:"https://i.pinimg.com/236x/bd/ed/4e/bded4e69bdb160d738327ae4063af23b.jpg"}}
+    <Image source={{uri:"https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW92aWV8ZW58MHx8MHx8fDA%3D"}}
           style={styles.img}
           alt='background'
           
@@ -120,27 +120,29 @@ const styles = StyleSheet.create({
     },
     img:{
       width:"100%",
-      height:500
+      height:400,
+      borderBottomLeftRadius:20,
+      borderBottomRightRadius:20
     },
     bar:{
         backgroundColor:"transparent",
         borderRadius:20,
-        width:"69%",
+        width:"64%",
         color:"white"
     },
     dropdown: {
-        width:"25%",
+        width:"30%",
         marginLeft:"6%",
-        backgroundColor:"gray",
+        backgroundColor:"transparent",
         justifyContent:"center",
         textAlign:"center",
-        backgroundColor:"gray",
         borderRadius: 22,
         paddingLeft:20
     },
     
     selectedTextStyle: {
       fontSize: 14,
+      textAlign:"center"
     }
 })
 

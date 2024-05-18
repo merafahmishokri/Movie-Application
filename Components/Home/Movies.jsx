@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Movie from './Movie';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetNowPlayingMovies, GetPopulargMovies, GetTopRatedMovies, GetUpcomingMovies, setMovies } from '../../Redux/slices/movieSlice';
+import { FlatList } from 'react-native';
 
 
 const Movies = () => {
@@ -23,13 +24,37 @@ const Movies = () => {
     
     },[])
     return (
-        <ScrollView style={styles.container}>
-            {moviesFlag[0]?<View><Text>search</Text>{searchMovies.map(m=><Movie key={m.id} {...m}></Movie>)}</View>:<></>}
-            {moviesFlag[1]?<View><Text>NowPlayingmovies</Text>{NowPlayingmovies.map(m=><Movie key={m.id} {...m}></Movie>)}</View>:<></>}
-            {moviesFlag[2]?<View><Text>Popularmovies</Text>{Popularmovies.map(m=><Movie key={m.id} {...m}></Movie>)}</View>:<></>}
-            {moviesFlag[3]?<View><Text>TopRatedmovies</Text>{TopRatedmovies.map(m=><Movie key={m.id} {...m}></Movie>)}</View>:<></>}
-            {moviesFlag[4]?<View><Text>Upcomingmovies</Text>{Upcomingmovies.map(m=><Movie key={m.id} {...m}></Movie>)}</View>:<></>}
-        </ScrollView> 
+        <>
+            {moviesFlag[0]?<View><Text style={styles.txt}>Search Results</Text><View style={{margin:"auto"}}>{searchMovies.map(m=><Movie key={m.id} {...m} flag={true}></Movie>)}</View></View>:<></>}
+            {moviesFlag[1]?<View><Text style={styles.txt}>Now Playing</Text><FlatList
+                data={NowPlayingmovies}
+                renderItem={({item})=><Movie {...item}></Movie>}
+                keyExtractor={item => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false} 
+            /></View>:<></>}
+            {moviesFlag[2]?<View><Text style={styles.txt}>Popular</Text><FlatList
+                data={Popularmovies}
+                renderItem={({item})=><Movie {...item}></Movie>}
+                keyExtractor={item => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false} 
+            /></View>:<></>}
+            {moviesFlag[3]?<View><Text style={styles.txt}>Top Rated</Text><FlatList
+                data={TopRatedmovies}
+                renderItem={({item})=><Movie {...item}></Movie>}
+                keyExtractor={item => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false} 
+            /></View>:<></>}
+            {moviesFlag[4]?<View><Text style={styles.txt}>Upcoming</Text><FlatList
+                data={Upcomingmovies}
+                renderItem={({item})=><Movie {...item}></Movie>}
+                keyExtractor={item => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false} 
+            /></View>:<></>}
+        </>
         
     );
 }
@@ -37,6 +62,12 @@ const Movies = () => {
 const styles = StyleSheet.create({
     container:{
         
+    },
+    txt:{
+        color:"white",
+        fontSize:30,
+        marginLeft:20,
+        marginTop:20,
     }
 })
 

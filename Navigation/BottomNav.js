@@ -10,21 +10,31 @@ const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+        screenOptions={{
+            tabBarStyle: {
+              backgroundColor: 'black', // Set your desired background color
+            },
+          }}
+        >
       <Tab.Screen name="Home" component={Home} 
       options={{
           header:()=>null,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
+          tabBarActiveTintColor:"#DFD0B8"
         }} 
         />
       <Tab.Screen name="Favorites" component={Favorites} 
       options={{
+        header:()=>null,
         tabBarLabel: 'Home',
         tabBarIcon: ({ color, size }) => (
           <MaterialIcons name="favorite" color={color} size={size} />
-        ),
+        )
+        ,
+          tabBarActiveTintColor:"#DFD0B8"
       }}
       />
     </Tab.Navigator>

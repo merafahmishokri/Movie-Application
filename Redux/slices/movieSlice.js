@@ -4,24 +4,23 @@ import axios from "axios";
 export const GetNowPlayingMovies=createAsyncThunk("movies/getAllNowPlaying",async()=>{
     const data=await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=00f378e7895b0d9b5b8653e265d683e1")
     return data.data.results
-    
 })
+
 export const GetPopulargMovies=createAsyncThunk("movies/getAllPopular",async()=>{
     const data=await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=00f378e7895b0d9b5b8653e265d683e1")
     return data.data.results
-    
 })
+
 export const GetTopRatedMovies=createAsyncThunk("movies/getAllTopRated",async()=>{
     const data=await axios.get("https://api.themoviedb.org/3/movie/top_rated?api_key=00f378e7895b0d9b5b8653e265d683e1")
     return data.data.results
-    
 })
+
 export const GetUpcomingMovies=createAsyncThunk("movies/getAllUpcoming",async()=>{
     const data=await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=00f378e7895b0d9b5b8653e265d683e1")
-
-    return data.data.results
-    
+    return data.data.results  
 })
+
 const moviesSlice=createSlice({
     name:"movies",
     initialState:{moviesFlag:[],NowPlaying:[],Popular:[],TopRated:[],Upcoming:[],movies:[]},

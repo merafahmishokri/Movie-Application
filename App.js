@@ -7,13 +7,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import DrawerNav from './Navigation/DrawerNav';
 import 'react-native-gesture-handler';
 import BottomNav from './Navigation/BottomNav';
+import StackNav from './Navigation/StackNav';
 
 export default function App() {
   return (
     
     <Provider store={store}>
       <NavigationContainer>
-        <BottomNav></BottomNav>
+        <BottomNav>
+
+        <StackNav></StackNav>
+        </BottomNav>
       </NavigationContainer>
     </Provider>
   );
@@ -21,9 +25,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor:"black"
   },
 });
