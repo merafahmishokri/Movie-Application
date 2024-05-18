@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import * as React from 'react';
 import { Avatar, Text } from 'react-native-paper';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite, removeFromFavorite } from '../../Redux/slices/favoriteSlice'
 import { Rating, RatingProps } from '@rneui/themed';
 import { AirbnbRating } from 'react-native-ratings';
+import { useNavigation } from '@react-navigation/native';
 const Movie = (movie) => {
     const favorites = useSelector(state => state.favorites.favorites)
     const dispatch = useDispatch()
@@ -16,15 +17,16 @@ const Movie = (movie) => {
             dispatch(removeFromFavorite(movie.id))
         }
     }
+    const navigation = useNavigation();
+    const moviePressed=()=>{
+        navigation.navigate('Details',{movie})
+    }
     return (
-
+        <TouchableWithoutFeedback onPress={moviePressed}>
         <View style={styles.card}>
-
-            {/* <Rating name="half-rating-read" value={vote_average/2} precision={0.1} readOnly sx={{backgroundColor:"#45474B",opacity:"0.9",borderRadius:"20px",position:"absolute",margin:"10px",marginLeft:"10%"}} /> */}
             <Image source={{ uri: "https://image.tmdb.org/t/p/w500/" + movie.poster_path }} style={styles.img} alt="movie"></Image>
             <MaterialIcons name="favorite" size={24} color={favorites.includes(movie) == true ? "red" : "white"} onPress={AddToFavorites} style={styles.icon} />
             <View style={styles.rating}>
-
             <AirbnbRating
               starContainerStyle={{
                   alignSelf: "center",
@@ -34,14 +36,14 @@ const Movie = (movie) => {
                 isDisabled={true}
                 showRating={false}
                 defaultRating={movie.vote_average/2}
-                size={20}
-                
+                size={20}                
                 />
                 </View>
             <View style={{ margin: 20 }}>
                 <View><Text style={{ color: "white", fontWeight: "bold",textAlign:"center" }}>{movie.title} ({(movie.release_date + "").split("-")[0]})</Text></View>
             </View>
         </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 15,
         margin: 20,
-        backgroundColor:"#222831",
+        backgroundColor:"#2D2727",
         borderRadius: 20,
         height: 400,
         

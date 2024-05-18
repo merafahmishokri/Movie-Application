@@ -14,10 +14,8 @@ export default function App() {
     
     <Provider store={store}>
       <NavigationContainer>
-        <BottomNav>
-
-        <StackNav></StackNav>
-        </BottomNav>
+        <StackNav>
+        </StackNav>
       </NavigationContainer>
     </Provider>
   );

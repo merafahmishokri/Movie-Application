@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Searchbar } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import { Image, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import {searchMovies, setMovies } from '../../Redux/slices/movieSlice';
@@ -55,7 +55,6 @@ const Search = () => {
     // console.log(searchQuery)
     const handleChange=(event)=>{
       setSearchQuery(event)
-      console.log(event)
       if(event){
         const newMovies1=NowPlayingmovies.filter(m=>m.title.includes(event))
         const newMovies2=Popularmovies.filter(m=>m.title.includes(event))
@@ -137,7 +136,8 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         textAlign:"center",
         borderRadius: 22,
-        paddingLeft:20
+        paddingLeft:20,
+        
     },
     
     selectedTextStyle: {

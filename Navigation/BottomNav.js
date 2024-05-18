@@ -23,18 +23,24 @@ const BottomNav = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
-          tabBarActiveTintColor:"#DFD0B8"
+          tabBarActiveTintColor:"#DFD0B8",
+          tabBarLabelStyle: {
+            fontSize: 15,
+          },
         }} 
         />
       <Tab.Screen name="Favorites" component={Favorites} 
       options={{
         header:()=>null,
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Favorites',
         tabBarIcon: ({ color, size }) => (
           <MaterialIcons name="favorite" color={color} size={size} />
         )
         ,
-          tabBarActiveTintColor:"#DFD0B8"
+          tabBarActiveTintColor:"#DFD0B8",
+          tabBarLabelStyle: {
+            fontSize: 15,
+          },
       }}
       />
     </Tab.Navigator>

@@ -26,34 +26,34 @@ const Movies = () => {
     return (
         <>
             {moviesFlag[0]?<View><Text style={styles.txt}>Search Results</Text><View style={{margin:"auto"}}>{searchMovies.map(m=><Movie key={m.id} {...m} flag={true}></Movie>)}</View></View>:<></>}
-            {moviesFlag[1]?<View><Text style={styles.txt}>Now Playing</Text><FlatList
-                data={NowPlayingmovies}
-                renderItem={({item})=><Movie {...item}></Movie>}
-                keyExtractor={item => item.id}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false} 
-            /></View>:<></>}
-            {moviesFlag[2]?<View><Text style={styles.txt}>Popular</Text><FlatList
-                data={Popularmovies}
-                renderItem={({item})=><Movie {...item}></Movie>}
-                keyExtractor={item => item.id}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false} 
-            /></View>:<></>}
-            {moviesFlag[3]?<View><Text style={styles.txt}>Top Rated</Text><FlatList
-                data={TopRatedmovies}
-                renderItem={({item})=><Movie {...item}></Movie>}
-                keyExtractor={item => item.id}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false} 
-            /></View>:<></>}
-            {moviesFlag[4]?<View><Text style={styles.txt}>Upcoming</Text><FlatList
-                data={Upcomingmovies}
-                renderItem={({item})=><Movie {...item}></Movie>}
-                keyExtractor={item => item.id}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false} 
-            /></View>:<></>}
+            {moviesFlag[1]?<View><Text style={styles.txt}>Now Playing</Text>
+            <ScrollView 
+            horizontal={true} showsHorizontalScrollIndicator={false}
+            >
+                {NowPlayingmovies.map(m=><Movie key={m.id} {...m}></Movie>)}
+            </ScrollView>
+            </View>:<></>}
+            {moviesFlag[2]?<View><Text style={styles.txt}>Popular</Text>
+            <ScrollView 
+            horizontal={true} showsHorizontalScrollIndicator={false}
+            >
+                {Popularmovies.map(m=><Movie key={m.id} {...m}></Movie>)}
+            </ScrollView>
+            </View>:<></>}
+            {moviesFlag[3]?<View><Text style={styles.txt}>Top Rated</Text>
+            <ScrollView 
+            horizontal={true} showsHorizontalScrollIndicator={false}
+            >
+                {TopRatedmovies.map(m=><Movie key={m.id} {...m}></Movie>)}
+            </ScrollView>
+            </View>:<></>}
+            {moviesFlag[4]?<View><Text style={styles.txt}>Upcoming</Text>
+            <ScrollView 
+            horizontal={true} showsHorizontalScrollIndicator={false}
+            >
+                {Upcomingmovies.map(m=><Movie key={m.id} {...m}></Movie>)}
+            </ScrollView>
+            </View>:<></>}
         </>
         
     );
